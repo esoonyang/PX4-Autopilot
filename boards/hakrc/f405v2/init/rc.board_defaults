@@ -1,0 +1,14 @@
+#!/bin/sh
+#
+# HAKRC F405 V2 board defaults
+#------------------------------------------------------------------------------
+
+# Airframe: HAKRC Hinged Quad (plus configuration)
+param set-default SYS_AUTOSTART 5002
+
+# Hinged quad module defaults
+param set-default HQUAD_MODE_CH    1
+param set-default HQUAD_TRANS_TIME 2.0
+param set-default HQUAD_DAXIS_YAW  1.0
+param set-default HQUAD_CTRL_SURF  0.5
+param set-default HQUAD_FAIL_DIAG  0
