@@ -80,6 +80,7 @@ if(CONFIG_MODULES_MC_RATE_CONTROL)
 
 		# [5000, 5999] Quadrotor +
 		5001_quad_+
+		5002_hakrc_hingedquad
 
 		# [6000, 6999] Hexarotor x
 		6001_hexa_x

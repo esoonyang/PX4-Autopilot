@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# HAKRC F405 V2 board extras
+#------------------------------------------------------------------------------
+
+# Start MAX7456 OSD if present
+if [ -f /dev/osd0 ]; then
+	atxxxx start -s
+fi

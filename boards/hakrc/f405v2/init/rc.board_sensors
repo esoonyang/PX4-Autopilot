@@ -1,0 +1,15 @@
+#!/bin/sh
+#
+# HAKRC F405 V2 board sensor initialisation
+#------------------------------------------------------------------------------
+
+board_adc start
+
+# MPU6000 on SPI1, rotation ROTATION_NONE (0)
+if ! mpu6000 -R 0 -s start
+then
+	echo "HAKRC: MPU6000 start failed"
+fi
+
+# BMP280 barometer on SPI3
+bmp280 -s start

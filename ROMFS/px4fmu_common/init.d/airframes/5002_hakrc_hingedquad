@@ -1,0 +1,88 @@
+#!/bin/sh
+#
+# @name HAKRC Hinged Quad
+#
+# @type Quadrotor +
+# @class Copter
+#
+# @maintainer PX4 Development Team
+#
+# @board hakrc_f405v2 default
+#
+
+. ${R}etc/init.d/rc.mc_defaults
+
+# ---- Geometry: Plus quad, arm half-length 0.2 m (200 mm), AUW ~3 kg --------
+#
+# PX4 control-allocation body frame: X forward, Y left, Z up.
+# Motor layout:
+#   M1 (idx 0) front CCW  px= 0.0 m  py=+0.2 m
+#   M2 (idx 1) right CW   px=-0.2 m  py= 0.0 m
+#   M3 (idx 2) rear  CCW  px= 0.0 m  py=-0.2 m
+#   M4 (idx 3) left  CW   px=+0.2 m  py= 0.0 m
+
+param set-default CA_AIRFRAME 0
+
+param set-default CA_ROTOR_COUNT 4
+
+param set-default CA_ROTOR0_PX  0.0
+param set-default CA_ROTOR0_PY  0.2
+param set-default CA_ROTOR0_KM  0.05
+
+param set-default CA_ROTOR1_PX -0.2
+param set-default CA_ROTOR1_PY  0.0
+param set-default CA_ROTOR1_KM -0.05
+
+param set-default CA_ROTOR2_PX  0.0
+param set-default CA_ROTOR2_PY -0.2
+param set-default CA_ROTOR2_KM  0.05
+
+param set-default CA_ROTOR3_PX  0.2
+param set-default CA_ROTOR3_PY  0.0
+param set-default CA_ROTOR3_KM -0.05
+
+# ---- Output function mapping ------------------------------------------------
+# Outputs 1-4: motors (DShot)    Outputs 5-8: control surface servos (PWM)
+param set-default PWM_MAIN_FUNC1 101
+param set-default PWM_MAIN_FUNC2 102
+param set-default PWM_MAIN_FUNC3 103
+param set-default PWM_MAIN_FUNC4 104
+param set-default PWM_MAIN_FUNC5 201
+param set-default PWM_MAIN_FUNC6 202
+param set-default PWM_MAIN_FUNC7 203
+param set-default PWM_MAIN_FUNC8 204
+
+# ---- Rate PID — initial values for 3 kg, 40 cm diagonal --------------------
+param set-default MC_ROLLRATE_P  0.12
+param set-default MC_ROLLRATE_I  0.05
+param set-default MC_ROLLRATE_D  0.003
+
+param set-default MC_PITCHRATE_P 0.12
+param set-default MC_PITCHRATE_I 0.05
+param set-default MC_PITCHRATE_D 0.003
+
+param set-default MC_YAWRATE_P   0.18
+param set-default MC_YAWRATE_I   0.02
+param set-default MC_YAWRATE_D   0.0
+
+# ---- Attitude gains ---------------------------------------------------------
+param set-default MC_ROLL_P   5.5
+param set-default MC_PITCH_P  5.5
+param set-default MC_YAW_P    2.5
+
+# ---- Position controller ----------------------------------------------------
+param set-default MPC_XY_P    0.95
+param set-default MPC_Z_P     1.0
+
+# ---- Thrust hover estimate (3 kg on 4S) ------------------------------------
+param set-default MPC_THR_HOVER 0.45
+
+# ---- Battery: 4S LiPo -------------------------------------------------------
+param set-default BAT_N_CELLS 4
+
+# ---- Hinged quad module defaults --------------------------------------------
+param set-default HQUAD_MODE_CH    1
+param set-default HQUAD_TRANS_TIME 2.0
+param set-default HQUAD_DAXIS_YAW  1.0
+param set-default HQUAD_CTRL_SURF  0.5
+param set-default HQUAD_FAIL_DIAG  0

@@ -1,0 +1,15 @@
+menuconfig MODULES_MC_HINGED_QUAD
+	bool "mc_hinged_quad"
+	default n
+	---help---
+		Enable support for the dual-axis hinged-arm quadrotor control module.
+		This module manages smooth transitions between 4-axis and dual-axis
+		flight modes for airframes with hinged arms and independent control
+		surfaces below each motor.
+
+menuconfig USER_MC_HINGED_QUAD
+	bool "mc_hinged_quad running as userspace module"
+	default n
+	depends on BOARD_PROTECTED && MODULES_MC_HINGED_QUAD
+	---help---
+		Put mc_hinged_quad in userspace memory

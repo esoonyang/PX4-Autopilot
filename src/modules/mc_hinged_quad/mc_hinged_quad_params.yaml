@@ -1,0 +1,71 @@
+module_name: mc_hinged_quad
+parameters:
+- group: Hinged Quad Control
+  definitions:
+    HQUAD_MODE_CH:
+      description:
+        short: RC channel for dual-axis mode switch
+        long: |
+          Selects which RC aux channel triggers the transition between standard
+          4-axis flight and dual-axis (hinged-arm) flight.  The channel value
+          is normalised to [-1, 1]; values above 0.5 activate dual-axis mode.
+          Valid range 1-6 maps to aux1-aux6 in manual_control_setpoint.
+      type: int32
+      default: 1
+      min: 1
+      max: 6
+
+    HQUAD_TRANS_TIME:
+      description:
+        short: Motor fade-out duration for mode transition
+        long: |
+          When switching from 4-axis to dual-axis mode, the motors on the
+          inactive diagonal are ramped to idle over this period (seconds).
+          Minimum recommended value is 1.5 s to give the attitude controller
+          time to adapt.
+      type: float
+      default: 2.0
+      min: 0.5
+      max: 10.0
+      decimal: 1
+      unit: s
+
+    HQUAD_DAXIS_YAW:
+      description:
+        short: Dual-axis yaw authority scalar
+        long: |
+          In dual-axis mode yaw is primarily handled by differential control
+          surface deflection.  This parameter scales the yaw demand sent to
+          the servos.  Reduce if yaw oscillations are observed; increase if
+          yaw response is insufficient.
+      type: float
+      default: 1.0
+      min: 0.0
+      max: 2.0
+      decimal: 2
+
+    HQUAD_CTRL_SURF:
+      description:
+        short: Control surface authority scalar
+        long: |
+          Global scalar applied to all four servo outputs.  In 4-axis mode
+          servos act as supplementary aerodynamic surfaces.  In dual-axis mode
+          they are the primary yaw actuators.
+      type: float
+      default: 0.5
+      min: 0.0
+      max: 1.0
+      decimal: 2
+
+    HQUAD_FAIL_DIAG:
+      description:
+        short: Inactive motor diagonal in dual-axis mode
+        long: |
+          Selects which diagonal pair of motors is ramped to idle when
+          dual-axis mode is engaged.  0 = M1/M3 (front/rear) idle, M2/M4
+          active.  1 = M2/M4 (left/right) idle, M1/M3 active.
+      type: int32
+      default: 0
+      values:
+        0: M1/M3 inactive (M2/M4 active)
+        1: M2/M4 inactive (M1/M3 active)
