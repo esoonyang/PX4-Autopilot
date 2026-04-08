@@ -40,9 +40,10 @@
  * ============
  * This module sits between the standard PX4 attitude/rate controllers and
  * the actuator output layer.  It subscribes to vehicle_torque_setpoint and
- * vehicle_thrust_setpoint (produced by the control allocator), reads the RC
+ * vehicle_thrust_setpoint (published by the rate controller), reads the RC
  * channel selected for mode switching, and publishes actuator_motors and
- * actuator_servos.
+ * actuator_servos.  It replaces the standard control_allocator for this
+ * airframe (control_allocator is stopped in rc.board_extras).
  *
  * Flight modes
  * ============
@@ -72,7 +73,6 @@
 #include <uORB/topics/actuator_servos.h>
 #include <uORB/topics/manual_control_setpoint.h>
 #include <uORB/topics/parameter_update.h>
-#include <uORB/topics/vehicle_status.h>
 #include <uORB/topics/vehicle_thrust_setpoint.h>
 #include <uORB/topics/vehicle_torque_setpoint.h>
 
@@ -115,7 +115,6 @@ private:
 	uORB::SubscriptionCallbackWorkItem _vehicle_thrust_sub{this, ORB_ID(vehicle_thrust_setpoint)};
 	uORB::Subscription _vehicle_torque_sub{ORB_ID(vehicle_torque_setpoint)};
 	uORB::Subscription _manual_control_sub{ORB_ID(manual_control_setpoint)};
-	uORB::Subscription _vehicle_status_sub{ORB_ID(vehicle_status)};
 	uORB::Subscription _parameter_update_sub{ORB_ID(parameter_update)};
 
 	/* Publications */

@@ -7,3 +7,10 @@
 if [ -f /dev/osd0 ]; then
 	atxxxx start -s
 fi
+
+# The mc_hinged_quad module handles actuator mixing for this airframe.
+# Stop the generic control allocator (started by rc.mc_apps) and replace it
+# with the custom hinged-quad mixer so that only one module publishes to
+# actuator_motors.
+control_allocator stop
+mc_hinged_quad start

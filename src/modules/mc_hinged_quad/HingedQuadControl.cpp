@@ -36,12 +36,12 @@
  *
  * Dual-axis hinged-arm quadrotor control module.
  *
- * Motor / geometry convention (plus quad, PX4 body frame X=fwd, Y=left, Z=up):
+ * Motor / geometry convention (plus quad, PX4 body frame X=fwd, Y=right, Z=down):
  *
  *          M1 (front, CCW)   idx 0
  *               |
  *  M4 (left,CW) +------ M2 (right, CW)   idx 1
- *               |         idx 3
+ *    idx 3      |
  *          M3 (rear, CCW)   idx 2
  *
  * Servo mapping (actuator_servos, 0-based):

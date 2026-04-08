@@ -14,31 +14,31 @@
 
 # ---- Geometry: Plus quad, arm half-length 0.2 m (200 mm), AUW ~3 kg --------
 #
-# PX4 control-allocation body frame: X forward, Y left, Z up.
-# Motor layout:
-#   M1 (idx 0) front CCW  px= 0.0 m  py=+0.2 m
-#   M2 (idx 1) right CW   px=-0.2 m  py= 0.0 m
-#   M3 (idx 2) rear  CCW  px= 0.0 m  py=-0.2 m
-#   M4 (idx 3) left  CW   px=+0.2 m  py= 0.0 m
+# PX4 control-allocation body frame: X forward, Y right, Z up.
+# Motor layout (FRD convention: +X = forward, +Y = right):
+#   M1 (idx 0) front CCW  px=+0.2 m  py= 0.0 m
+#   M2 (idx 1) right CW   px= 0.0 m  py=+0.2 m
+#   M3 (idx 2) rear  CCW  px=-0.2 m  py= 0.0 m
+#   M4 (idx 3) left  CW   px= 0.0 m  py=-0.2 m
 
 param set-default CA_AIRFRAME 0
 
 param set-default CA_ROTOR_COUNT 4
 
-param set-default CA_ROTOR0_PX  0.0
-param set-default CA_ROTOR0_PY  0.2
+param set-default CA_ROTOR0_PX  0.2
+param set-default CA_ROTOR0_PY  0.0
 param set-default CA_ROTOR0_KM  0.05
 
-param set-default CA_ROTOR1_PX -0.2
-param set-default CA_ROTOR1_PY  0.0
+param set-default CA_ROTOR1_PX  0.0
+param set-default CA_ROTOR1_PY  0.2
 param set-default CA_ROTOR1_KM -0.05
 
-param set-default CA_ROTOR2_PX  0.0
-param set-default CA_ROTOR2_PY -0.2
+param set-default CA_ROTOR2_PX -0.2
+param set-default CA_ROTOR2_PY  0.0
 param set-default CA_ROTOR2_KM  0.05
 
-param set-default CA_ROTOR3_PX  0.2
-param set-default CA_ROTOR3_PY  0.0
+param set-default CA_ROTOR3_PX  0.0
+param set-default CA_ROTOR3_PY -0.2
 param set-default CA_ROTOR3_KM -0.05
 
 # ---- Output function mapping ------------------------------------------------
